@@ -1,6 +1,5 @@
 package com.couchbase.example.model;
 
-
 public class DemoUser {
 
     private String id;
