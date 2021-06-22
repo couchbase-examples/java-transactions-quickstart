@@ -48,10 +48,10 @@ public class DBSetupRunner implements CommandLineRunner {
                     +"."+bucket.defaultScope().name()+"."
                     + bucket.defaultCollection().name());
 
-        bucket.defaultCollection().insert("user1", new DemoUser("user1", "Denis", "Rosa", 100));
-        bucket.defaultCollection().insert("user2", new DemoUser("user2", "Eric", "Bishard", 70));
-        bucket.defaultCollection().insert("user3", new DemoUser("user3", "Aaron", "LeBeau", 20));
-        bucket.defaultCollection().insert("user4", new DemoUser("user4", "Dmitrii", "Chechetkin", 80));
+        bucket.defaultCollection().insert("user1", new DemoUser("user1", "Penko", "Ruben", 100));
+        bucket.defaultCollection().insert("user2", new DemoUser("user2", "Malo", "Murad", 70));
+        bucket.defaultCollection().insert("user3", new DemoUser("user3", "Hendry", "Pelagius", 20));
+        bucket.defaultCollection().insert("user4", new DemoUser("user4", "Alejandra", "Loraine", 80));
 
     }
 }

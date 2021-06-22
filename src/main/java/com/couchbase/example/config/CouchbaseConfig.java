@@ -37,10 +37,13 @@ public class CouchbaseConfig {
 
     @Bean
     public Transactions transactions(final Cluster couchbaseCluster) {
-      TransactionConfigBuilder.create().
-        return Transactions.create(couchbaseCluster, TransactionConfigBuilder.create().durabilityLevel(TransactionDurabilityLevel.NONE)
+      return Transactions.create(
+        couchbaseCluster,
+        TransactionConfigBuilder.create()
+          .durabilityLevel(TransactionDurabilityLevel.NONE)
                 // The configuration can be altered here, but in most cases the defaults are fine.
-                .build());
+          .build()
+      );
     }
 
 }
