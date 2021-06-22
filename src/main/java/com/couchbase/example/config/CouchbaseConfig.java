@@ -7,6 +7,7 @@ import com.couchbase.client.java.manager.bucket.BucketType;
 import com.couchbase.transactions.TransactionDurabilityLevel;
 import com.couchbase.transactions.Transactions;
 import com.couchbase.transactions.config.TransactionConfigBuilder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,6 +37,7 @@ public class CouchbaseConfig {
 
     @Bean
     public Transactions transactions(final Cluster couchbaseCluster) {
+      TransactionConfigBuilder.create().
         return Transactions.create(couchbaseCluster, TransactionConfigBuilder.create().durabilityLevel(TransactionDurabilityLevel.NONE)
                 // The configuration can be altered here, but in most cases the defaults are fine.
                 .build());

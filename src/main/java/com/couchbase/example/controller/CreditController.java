@@ -1,6 +1,7 @@
 package com.couchbase.example.controller;
 
 import com.couchbase.example.model.TransferCreditService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,6 @@ public class CreditController {
 
     @Autowired
     private TransferCreditService transferCreditService;
-
 
     @RequestMapping("/transfer")
     public boolean transferCredit(@RequestParam("sourceUser") String sourceUser,
