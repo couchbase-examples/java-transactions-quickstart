@@ -1,7 +1,7 @@
-# Quickstart in Couchbase with Java and Spring Boot
-#### Build a REST API with Couchbase's Java SDK 3 and Spring Boot
+# Example application for couchbase transactions tutorial for Java
+#### Use distributed transactions with Couchbase's Java SDK 3 and Spring Boot
 
-> This repo is designed to teach you how to use transactions with Couchbase's Java SDK 3
+> This repo is Quickstart in Couchbase transactions with Java and Spring Boot designed to teach you how to use transactions with Couchbase's Java SDK 3
 
 [![Try it now!](https://da-demo-images.s3.amazonaws.com/runItNow_outline.png?couchbase-example=java-transactions-quickstart-repo&source=github)](https://gitpod.io/#https://github.com/couchbase-examples/java-transactions-quickstart)
 
