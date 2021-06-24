@@ -1,4 +1,4 @@
-# Example application for couchbase transactions tutorial for Java
+# Demo App using Couchbase Transactions in Java
 #### Use distributed transactions with Couchbase's Java SDK 3 and Spring Boot
 
 > This repo is Quickstart in Couchbase transactions with Java and Spring Boot designed to teach you how to use transactions with Couchbase's Java SDK 3
