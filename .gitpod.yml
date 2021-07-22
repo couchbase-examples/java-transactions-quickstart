@@ -3,19 +3,20 @@ image:
 
 tasks:
 - name: Start Couchbase
-  command:  cd /opt/couchbase/ && ./start-cb.sh
-- name: Start app
-  init: ./mvnw spring-boot:run
-  command: java -jar target/*.jar
+  init:  cd /opt/couchbase/ && ./start-cb.sh
 - name: Log use
-  command: curl -s 'https://da-demo-images.s3.amazonaws.com/runItNow_outline.png?couchbase-example=java-transactions-quickstart-repo&source=gitpod' > /dev/null
+  init: curl -s 'https://da-demo-images.s3.amazonaws.com/runItNow_outline.png?couchbase-example=java-transactions-quickstart-repo&source=gitpod' > /dev/null
+- name: Start app
+  command: ./mvnw spring-boot:run
 # exposed ports
 ports:
 - port: 8080
   onOpen: open-preview
 - port: 8091
   onOpen: open-browser
-- port: 8092-10000
+- port: 8092-8999
+  onOpen: ignore
+- port: 9000-9999
   onOpen: ignore
 - port: 4369
   onOpen: ignore

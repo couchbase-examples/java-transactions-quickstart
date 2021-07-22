@@ -25,6 +25,7 @@ public class AppController {
     @GetMapping("/")
 	public ModelAndView deleteBusinessIntelligence(ModelMap model) {
 
+    try {
         List<DemoUser> users =  cluster.query("Select p.* from "+bucket.name()
                 +"."+bucket.defaultScope().name()+"."
                 +bucket.defaultCollection().name()+" p", QueryOptions.queryOptions()
@@ -32,7 +33,15 @@ public class AppController {
                 .rowsAs(DemoUser.class);
 
         model.addAttribute("users", users);
-        return  new ModelAndView("index");
+        if (users.size() > 0) {
+          return new ModelAndView("index");
+        }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return new ModelAndView("loading");
+
 	}
 
 }
