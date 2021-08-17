@@ -3,7 +3,7 @@ image:
 
 tasks:
 - name: Start Couchbase
-  init:  cd /opt/couchbase/ && ./start-cb.sh
+  init: ./startcb.sh
 - name: Log use
   init: curl -s 'https://da-demo-images.s3.amazonaws.com/runItNow_outline.png?couchbase-example=java-transactions-quickstart-repo&source=gitpod' > /dev/null
 - name: Start app
