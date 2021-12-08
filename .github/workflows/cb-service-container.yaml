@@ -1,6 +1,9 @@
 name: Run maven tests using couchbase service container
 on:
+  workflow_dispatch:
   push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
