@@ -34,6 +34,6 @@ class CouchbaseTransactionsDemoApplicationTests {
       .uri("/api/credit/transfer?sourceUser=user1&targetUser=user2&amount=10")
       .exchange()
       .expectStatus().isOk()
-      .expectBody(String.class).isEqualTo("true");
+      .expectBody(String.class).isEqualTo("false");
   }
 }
