@@ -1,15 +1,21 @@
 name: Run maven tests using couchbase service container
 on:
+  workflow_dispatch:
   push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   schedule:
-  - cron: "0 11 * * 0"
+    - cron: "0 11 * * 0"
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
     - name: Update repositories
       run: |
-        apt update || echo "apt-update failed" # && apt -y upgrade 
+        apt update || echo "apt-update failed" # && apt -y upgrade
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
@@ -53,6 +59,17 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build with Maven
       run: mvn --batch-mode --update-snapshots -B package --file pom.xml verify
+    - name: Report Status
+      if: always()
+      uses: ravsamhq/notify-slack-action@v1
+      with:
+        status: ${{ job.status }}
+        notify_when: 'failure,warnings'
+        notification_title: 'Repo: *{repo}*'
+        message_format: '{emoji}    *{status_message}* in <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit_sha}>'
+        footer: '<{run_url}|View Full Run on GitHub>'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
     services:
       couchbase:
         image: couchbase:enterprise-7.0.0-beta
