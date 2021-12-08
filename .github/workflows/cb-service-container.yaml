@@ -1,6 +1,9 @@
 name: Run maven tests using couchbase service container
 on:
   push:
+  pull_request:
+    branches:
+      - main
   schedule:
   - cron: "0 11 * * 0"
 jobs:
