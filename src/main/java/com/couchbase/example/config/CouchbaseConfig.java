@@ -1,7 +1,15 @@
 package com.couchbase.example.config;
 
+import java.util.List;
+
+import java.security.cert.X509Certificate;
+
+import com.couchbase.client.core.deps.io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import com.couchbase.client.core.env.SecurityConfig;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
+import com.couchbase.client.java.ClusterOptions;
+import com.couchbase.client.java.env.ClusterEnvironment;
 import com.couchbase.client.java.manager.bucket.BucketSettings;
 import com.couchbase.client.java.manager.bucket.BucketType;
 import com.couchbase.transactions.TransactionDurabilityLevel;
@@ -20,7 +28,23 @@ public class CouchbaseConfig {
 
     @Bean
     public Cluster getCouchbaseCluster(){
-        return Cluster.connect(dbProp.getHostName(), dbProp.getUsername(), dbProp.getPassword());
+        return Cluster.connect(dbProp.getHostName(), ClusterOptions.clusterOptions(
+              dbProp.getUsername(),
+              dbProp.getPassword()
+            ).environment(getClusterEnvironment())
+          );
+    }
+
+    public ClusterEnvironment getClusterEnvironment() {
+      ClusterEnvironment.Builder environmentBuilder = ClusterEnvironment.builder();
+      
+      /* Uncomment this for Capella connections
+      SecurityConfig.Builder securityConfig = SecurityConfig.enableTls(true)
+        .trustManagerFactory(InsecureTrustManagerFactory.INSTANCE);
+      environmentBuilder.securityConfig(securityConfig);
+      */
+
+      return environmentBuilder.build();
     }
 
     @Bean
